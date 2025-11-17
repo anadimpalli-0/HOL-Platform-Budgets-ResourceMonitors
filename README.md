@@ -1,36 +1,57 @@
-# College of XX XXX HOL: Alternate Business Title
-**Brief tagline emphasizing outcome or theme.**
+# Snowflake Cost Management HOL: Implementing Budgets and Resource Monitors
+**Master cost control and gain visibility into Snowflake spending with hands-on budget management.**
 
-![Lab Architecture](images/architecture_diagram.png)
+![Cost Management Architecture](image/cost_management_architecture.png)
 
 ---
 
 ## 🎬 Lab Overview Video
-Watch the [X-minute Lab Overview Video](overview.mp4) for a detailed walkthrough of key lab phases.
+Watch this comprehensive overview to understand how Snowflake's cost management features help you control spending and optimize resource usage.
 
 ---
 
 ## 🛠️ Hands-On Lab Overview
 
-In this hands-on lab, you'll step into the shoes of **XXX** tasked with **XXX**.
+In this hands-on lab, you'll step into the shoes of a **Snowflake Administrator** tasked with **implementing comprehensive cost management controls** to provide visibility and control over Snowflake spending.
 
-### 📋 What You’ll Do:
-List of 4–6 concrete tasks participants will complete. Clearly bold important terms.
-- **Task 1:** [Brief description of the first hands-on activity.]
-- **Task 2:** [Brief description of the second hands-on activity.]
-- **Task 3:** [Brief description of the third hands-on activity.]
-- **Task 4 (Optional)**: [Additional extension or customization step.]
+Customers frequently express concerns about cloud costs. This lab addresses those concerns by demonstrating Snowflake's built-in cost management capabilities: **Budgets** for spending visibility, **Resource Monitors** for proactive control, and **Role-Based Access Control** for empowering teams with cost awareness.
+
+### 📋 What You'll Do:
+
+- **Task 1:** Configure **email notifications** and set up a dedicated warehouse for cost management queries in Snowsight.
+- **Task 2:** Enable the **account-level budget** to monitor total monthly spending and configure **custom budgets** for specific resources (warehouses and databases).
+- **Task 3:** Create **role-based access controls** to allow non-ACCOUNTADMIN users to view budget information without editing privileges.
+- **Task 4:** Implement **best practices** for budget management, warehouse optimization, and cost monitoring in production environments.
+- **Task 5 (Optional):** Configure **Resource Monitors** with hard spending limits and suspension triggers for automated cost control.
 
 ### ⏲️ Estimated Lab Timeline
 
-Provide a brief agenda to help SEs understand pacing:
+This lab is designed to be completed in approximately 75-90 minutes:
 
-- **Phase 1 (Env setup & model training):** ~45 min
-- **Phase 2 (Model registry & batch inference):** ~30 min
-- **Phase 3 (Monitoring & cleanup):** ~15 min
-
-Include checkpoints (DORAs), recommended "stop points," and common customer questions.
+- **Phase 1 (Setup & Prerequisites):** ~15-20 min
+  - Configure email notifications
+  - Create Snowsight warehouse
+  - Navigate Cost Management interface
   
+- **Phase 2 (Setting Up Budgets):** ~20-25 min
+  - Enable account-level budget
+  - Create custom budgets
+  - Understand resource assignment behavior
+  
+- **Phase 3 (Access Control):** ~20-25 min
+  - Create budget monitor roles
+  - Configure granular access
+  - Test role-based visibility
+  
+- **Phase 4 (Cleanup & Best Practices):** ~10-15 min
+  - Clean up lab resources
+  - Review production deployment guidelines
+  - Learn ongoing optimization strategies
+
+**Checkpoints (DORAs):** Each phase includes verification steps to ensure successful completion before proceeding.
+
+**Stop Points:** Natural breaks after Phase 2 and Phase 3 allow for discussion or Q&A sessions.
+
 ---
 
 ## 📖 Table of Contents
@@ -39,121 +60,427 @@ Include checkpoints (DORAs), recommended "stop points," and common customer ques
 - [Suggested Discovery Questions](#suggested-discovery-questions)
 - [Repository Structure](#repository-structure)
 - [Prerequisites & Setup Details](#prerequisites--setup-details)
-- [Estimated Lab Timeline](#estimated-lab-timeline)
+- [Lab Execution Guide](#lab-execution-guide)
+- [Lab Validation & Grading](#lab-validation--grading)
 - [Placeholder & Naming Conventions](#placeholder--naming-conventions)
 - [Troubleshooting & FAQ](#troubleshooting--faq)
 - [Cleanup & Cost-Stewardship Procedures](#cleanup--cost-stewardship-procedures)
-- [Advanced Concepts (Salted in Training)](#advanced-concepts-salted-in-training)
-- [Links to Internal Resources & Helpful Documents](#links-to-internal-resources--helpful-documents)
+- [Advanced Concepts](#advanced-concepts)
+- [Links to Snowflake Resources & Documentation](#links-to-snowflake-resources--documentation)
 
 ---
 
 ## 📌 Why this Matters
 
-- **Business value:** Clearly explain how this lab impacts KPIs (e.g. accelerates time-to-insight by X%, reduces manual processes by Y hours per month).
-- **Pricing impact:** Highlight compute and storage cost expectations and best practices for efficient resource use (e.g., turning off resources when idle to reduce costs by Z%).
-- **Customer stories:** Link to decks, blogs or other information to promote reference stories.
+### Business Value
+- **Cost Transparency:** Budgets provide real-time visibility into spending, enabling data-driven financial decisions and reducing surprise overspending by up to 40%.
+- **Proactive Control:** Email notifications and resource monitors alert teams when spending exceeds thresholds, preventing budget overruns before they happen.
+- **Cross-Team Accountability:** Custom budgets enable department-specific cost tracking, promoting accountability and encouraging teams to optimize their resource usage.
+- **Faster Decision-Making:** With granular cost insights, teams can quickly identify optimization opportunities, potentially reducing monthly costs by 15-30%.
+
+### Pricing Impact
+- **Compute Costs:** Warehouses typically account for 70-80% of Snowflake spending. This lab teaches you to monitor and control warehouse costs effectively.
+- **Storage Costs:** Understanding storage consumption patterns helps optimize data retention policies and reduce unnecessary storage fees.
+- **Cost Efficiency:** Implementing auto-suspend (60-300 seconds) can reduce idle warehouse costs by up to 90%.
+- **Budget Adherence:** Organizations using budgets report 25-35% better adherence to planned spending vs. those without cost management controls.
 
 ---
 
 ## ❓ Suggested Discovery Questions
 
-Provide **5 to 6 open-ended questions** for customer conversations related to this HOL.
+Use these open-ended questions during customer conversations to understand their cost management needs:
 
-- "How are you currently handling [specific task or issue related to this HOL]?"
-- "What metrics matter most when evaluating [specific task or issue related to this HOL]?"
-- "Have you faced any security or compliance roadblocks with [specific task or issue related to this HOL]?"
-- "How would you customize this pattern for your environment?"
+1. **"How are you currently monitoring and controlling your Snowflake spending?"**
+   - Uncover whether they have visibility into costs or are flying blind
+
+2. **"What challenges have you faced with usage-based pricing models in the past?"**
+   - Identify pain points and concerns about cost predictability
+
+3. **"Do your individual teams or departments have visibility into their own Snowflake costs?"**
+   - Determine if they need custom budgets for chargeback or showback
+
+4. **"How quickly do you need to be notified when spending exceeds expected levels?"**
+   - Understand their alerting and notification requirements
+
+5. **"What approval processes exist for increasing cloud spending budgets?"**
+   - Learn about their governance and financial controls
+
+6. **"Have you experienced any unexpected spikes in Snowflake costs? What caused them?"**
+   - Identify patterns that budgets and resource monitors could prevent
+
+7. **"What metrics matter most when evaluating the ROI of your data platform spending?"**
+   - Understand how they measure value vs. cost
 
 ---
 
 ## 📂 Repository Structure
 
 ```bash
-├── README.md           # Main entry point
-├── config/             # Configuration templates, credentials
-├── code/               # SQL/Python scripts for automation
-├── notebooks/          # Interactive Jupyter notebooks
-├── data/               # Datasets (CSV, JSON) or external links
-├── images/             # Diagrams and visual assets
-├── lab_instructions/   # Step-by-step detailed instructions
-│ ├── phase1_task1.md
-│ ├── phase2_task2.md
-│ └── phase3_task3.md
-└── troubleshooting/    # Common issues and resolutions
-└── faq.md
+├── README.md                          # Main entry point (this file)
+├── LAB_INSTRUCTIONS.md 
+│   ├── phase1_setup_and_prerequisites.md
+│   ├── phase2_setting_up_budgets.md
+│   ├── phase3_access_control_for_budgets.md
+│   └── phase4_cleanup_and_best_practices.md
+├── image/                             # Diagrams and visual assets
+├── scripts/                           # SQL scripts for lab execution
+│   ├── 01_setup_email_notifications.sql
+│   ├── 02_create_snowsight_warehouse.sql
+│   ├── 03_create_budget_database.sql
+│   ├── 04_create_account_budget_monitor_role.sql
+│   ├── 05_create_custom_budget_monitor_role.sql
+│   ├── 06_view_budget_linked_resources.sql
+│   └── 07_cleanup_budgets.sql     
+├── Grading/                           # Validation scripts for lab completion
+│   ├── HOW_TO_GRADE.md                # Grading instructions
+│   ├── DoraGrading_01_setup_prerequisites.sql
+│   ├── DoraGrading_02_budgets_setup.sql
+│   ├── DoraGrading_03_access_control.sql
+│   └── DoraGrading_Complete.sql       
+└── troubleshooting/                   # Common issues and resolutions
 ```
+
 ---
 
 ## ✅ Prerequisites & Setup Details
 
-Internally helpful setup requirements:
+### Knowledge Prerequisites
+- **Snowflake Fundamentals:** Basic understanding of Snowflake architecture, roles, and warehouses
+- **SQL Proficiency:** Ability to read and execute SQL statements
+- **Role-Based Access Control (RBAC):** Familiarity with Snowflake's role hierarchy
+- **No Advanced Skills Required:** This lab is suitable for Snowflake beginners
 
-- **Knowledge prerequisites:** List required skills or prior knowledge.
-- **Account and entitlement checks:** Necessary roles/users, network policies, external functions.
-- **Hardware/software:** Supported browsers, recommended accounts, required Python packages.
+### Account and Entitlement Checks
+- **Required Role:** ACCOUNTADMIN access (for creating budgets and roles)
+- **Snowflake Edition:** Any edition (Standard, Enterprise, Business Critical)
+- **Account Type:** Trial or production account (both supported)
+- **Features Used:**
+  - Snowsight UI (web interface)
+  - Cost Management features
+  - Budget objects (native Snowflake feature)
 
----
-
-## 🔖 Placeholder & Naming Conventions
-
-Clearly define naming conventions:
-
-- Databases/schemas/tables: `PROJ_DEMO_<your initials>_HOL`
-- Model versions: `COLLEGE_AI_HOL_<MODEL_NAME>_v1`
-- Secrets management: Safely store credentials and API keys (never commit to GitHub).
-
----
-
-## ⚠️ Troubleshooting & FAQ
-
-Common errors and resolutions:
-
-**Issue:** Model registration network timeout  
-**Cause:** Likely incorrect VPC endpoint configuration  
-**Solution:** Verify correct VPC endpoint and security group settings in AWS, then reattempt the registration.
-
-Provide internal Slack channels or support queue links.
+### Setup Checklist
+Before starting the lab, ensure:
+- [ ] You have ACCOUNTADMIN role access
+- [ ] Your Snowflake account is accessible via Snowsight
+- [ ] You have a valid, verified email address
+- [ ] You have at least 2-3 existing warehouses in your account (for adding to custom budgets)
 
 ---
 
-## 🧹 Cleanup & Cost-Stewardship Procedures
+## 🚀 Lab Execution Guide
 
-🗑 **Cleanup Instructions:**
-- Run the command `DROP WAREHOUSE IF EXISTS [your warehouse];` in Snowflake after lab completion.
-- Immediately shut down your SageMaker instance through AWS Console:
-  - Navigate to SageMaker > JupyterLab Spaces.
-  - Stop or delete your workspace.
+### Script Execution Order
+
+Execute the SQL scripts in the following order. Each script corresponds to a specific phase of the lab:
+
+#### **Phase 1: Setup and Prerequisites** (15-20 min)
+
+**📘 Detailed Instructions:** [Phase 1: Setup and Prerequisites](lab_instructions/phase1_setup_and_prerequisites.md)
+
+1. **01_setup_email_notifications.sql**
+   - **Purpose:** Configure email address for budget notifications
+   - **What it does:** Sets and verifies email for the ACCOUNTADMIN user
+   - **Important:** Replace `<username>` and `<email@address>` with actual values
+   - **After running:** Check email for verification link and click to verify
+
+2. **02_create_snowsight_warehouse.sql**
+   - **Purpose:** Create dedicated warehouse for Cost Management queries
+   - **What it does:** Creates `SNOWSIGHT_WH` with X-Small size and 60-second auto-suspend
+   - **After running:** Select this warehouse in the Cost Management interface
 
 ---
 
-## 📘 Advanced Concepts (Salted in Training)
+#### **Phase 2: Setting Up Budgets** (20-25 min)
+**📘 Detailed Instructions:** [Phase 2: Setting Up Budgets](lab_instructions/phase2_setting_up_budgets.md)
 
-Brief callouts to deeper internal learning topics:
+3. **03_create_budget_database.sql**
+   - **Purpose:** Create database for storing custom budget objects
+   - **What it does:** Creates `BUDGET_DB` database and `BUDGET_SCHEMA` schema
+   - **After running:** Refresh Snowsight if the database doesn't appear in dropdowns
 
-- **Topic 1:** Brief deeper context.
-- **Topic 2:** Brief deeper context.
-- **Topic 3:** Brief deeper context.
+**Manual Step (Snowsight UI):**
+- **Enable Account Budget:** 
+  - Navigate to Admin → Cost Management → Budgets
+  - Click "Set Up Account Budget"
+  - Set spending limit and configure email notifications
+  - Save and verify budget trendline appears
+
+**Manual Step (Snowsight UI):**
+- **Create CUSTOM_BUDGET_1:**
+  - Click the "+" button in Budgets section
+  - Name: `CUSTOM_BUDGET_1`
+  - Database: `BUDGET_DB`, Schema: `BUDGET_SCHEMA`
+  - Add at least 2 warehouses
+  - Set budget amount and create
+
+**Manual Step (Snowsight UI):**
+- **Create CUSTOM_BUDGET_2:**
+  - Click the "+" button again
+  - Name: `CUSTOM_BUDGET_2`
+  - Database: `BUDGET_DB`, Schema: `BUDGET_SCHEMA`
+  - Add 1 warehouse (use one from CUSTOM_BUDGET_1 to see resource movement behavior)
+  - Set budget amount and create
 
 ---
 
-## 🔗 Links to Internal Resources & Helpful Documents
+#### **Phase 3: Access Control for Budgets** (20-25 min)
+**📘 Detailed Instructions:** [Phase 3: Access Control for Budgets](lab_instructions/phase3_access_control_for_budgets.md)
 
-- [Snowflake Documentation](#)
-- [Best Practices](#)
-- [Quickstarts](#)
-- [Internal Wiki & Guidelines](#)
+4. **04_create_account_budget_monitor_role.sql**
+   - **Purpose:** Create role for viewing account budget (read-only)
+   - **What it does:** Creates `ACCOUNT_BUDGET_MONITOR` role and grants budget viewer privileges
+   - **Important:** Replace `<username>` with your actual username (required for DORA grading)
+   - **After running:** Switch to this role in Snowsight and verify you can see account budget but not custom budgets
+
+5. **05_create_custom_budget_monitor_role.sql**
+   - **Purpose:** Create role for viewing specific custom budgets (read-only)
+   - **What it does:** Creates `CUSTOM_BUDGET_MONITOR` role and grants access to `CUSTOM_BUDGET_1`
+   - **Important:** Replace `<username>` with your actual username
+   - **After running:** Switch to this role and verify you can see CUSTOM_BUDGET_1 but not account budget
+
+6. **06_view_budget_linked_resources.sql**
+   - **Purpose:** Display resources assigned to each custom budget
+   - **What it does:** Calls stored procedures to list warehouses/databases in each budget
+   - **Use case:** Verify which resources belong to which budget, especially after moving resources between budgets
+   - **After running:** Review output to confirm resource assignments
+
+---
+#### **Phase 4: Grading** (10-15 min)
+**📘 Detailed Instructions:** [Phase 4: Grading](Grading/HOW_TO_GRADE.md)
+
+---
+#### **Phase 5: Cleanup and Best Practices** (10-15 min)
+**📘 Detailed Instructions:** [Phase 5: Cleanup and Best Practices](lab_instructions/phase5_cleanup_and_best_practices.md)
+
+7. **07_cleanup_budgets.sql**
+   - **Purpose:** Clean up custom budgets created during the lab
+---
+
+## ✅ Lab Validation & Grading
+
+### Validate Your Lab Completion
+
+After completing each phase or the entire lab, validate your work using the automated grading scripts in the `/Grading/` folder.
+
+**Important:** Run validations **BEFORE cleanup** (Phase 4) to ensure all components are present for validation.
+
+### Grading Scripts
+
+**Phase-Specific Validations:**
+
+1. **Phase 1 Validation:** Setup and Prerequisites
+```sql
+@Grading/DoraGrading_01_setup_prerequisites.sql
+```
+Validates: Email notifications, SNOWSIGHT_WH warehouse
+
+2. **Phase 2 Validation:** Budgets Setup
+```sql
+@Grading/DoraGrading_02_budgets_setup.sql
+```
+Validates: BUDGET_DB, custom budgets (CUSTOM_BUDGET_1, CUSTOM_BUDGET_2)
+
+3. **Phase 3 Validation:** Access Control
+```sql
+@Grading/DoraGrading_03_access_control.sql
+```
+Validates: Budget monitor roles, privileges, user grants
+
+**Complete Lab Validation:**
+
+4. **Comprehensive Validation** (all phases)
+```sql
+@Grading/DoraGrading_Complete.sql
+```
+Validates all components, provides completion certificate
+
+### Before Running Validations
+
+⚠️ **Replace `<YOUR_USERNAME>`** in each grading script with your actual Snowflake username before running.
+
+**Example:**
+```sql
+-- Change this line in the script:
+SET username = '<YOUR_USERNAME>';
+
+-- To this (with your actual username):
+SET username = 'JOHN_DOE';
+```
+
+### Understanding Validation Results
+
+- **✅ PASS:** Component is correctly configured
+- **⚠️ WARNING:** Component works but may not be optimal  
+- **❌ FAIL:** Component is missing or incorrectly configured
+
+### Success Criteria
+
+**Lab completion requires:**
+- All ✅ PASS validations across all phases
+- Manual verification of account budget in Snowsight UI
+- Manual testing of role-based access (ACCOUNT_BUDGET_MONITOR and CUSTOM_BUDGET_MONITOR)
+
+**Total Validation Checks:** 15 automated checks + 4 manual UI verifications
+
+### Completion Certificate
+
+Upon successful validation of all components, the `DoraGrading_Complete.sql` script generates a personalized completion certificate.
+
+**For detailed grading instructions, see:** [Grading/HOW_TO_GRADE.md](Grading/HOW_TO_GRADE.md)
+
+### All-in-One Guide
+
+**Need everything in one place?** Use the consolidated guide:
+
+📘 **[LAB_INSTRUCTIONS_WITH_GRADING.md](LAB_INSTRUCTIONS_WITH_GRADING.md)**
+
+This comprehensive document includes:
+- Complete lab instructions for all 4 phases
+- Inline validation checkpoints
+- Grading scripts reference
+- Success criteria and troubleshooting
+- All in a single, easy-to-follow document (732 lines)
+
+---
+
+## 📘 Advanced Concepts
+
+### Resource Monitors vs. Budgets
+
+**Budgets (Covered in This Lab):**
+- Provide **notifications** when spending thresholds are reached
+- No automatic enforcement (informational only)
+- Can be viewed by non-admin roles
+- Best for: Visibility and awareness
+
+**Resource Monitors (Advanced Topic):**
+- Provide **hard limits** with automatic warehouse suspension
+- Can prevent overspending by stopping compute
+- Require ACCOUNTADMIN to configure
+- Best for: Strict cost control
+
+**Example Resource Monitor:**
+```sql
+CREATE RESOURCE MONITOR PROD_LIMIT
+  WITH CREDIT_QUOTA = 1000
+  FREQUENCY = MONTHLY
+  START_TIMESTAMP = IMMEDIATELY
+  TRIGGERS
+    ON 75 PERCENT DO NOTIFY
+    ON 90 PERCENT DO SUSPEND
+    ON 100 PERCENT DO SUSPEND_IMMEDIATE;
+
+ALTER WAREHOUSE PRODUCTION_WH SET RESOURCE_MONITOR = PROD_LIMIT;
+```
+
+---
+
+### Query Optimization for Cost Reduction
+
+**Techniques to Reduce Compute Costs:**
+
+1. **Result Caching:** Reuse results from recent identical queries (24-hour cache)
+```sql
+-- Automatic - no configuration needed
+-- Subsequent runs of the same query use cache (0 compute cost)
+```
+2. **Clustering Keys:** Optimize pruning for large tables
+```sql
+ALTER TABLE large_table CLUSTER BY (date_column, category);
+```
+
+3. **Materialized Views:** Pre-compute complex aggregations
+```sql
+CREATE MATERIALIZED VIEW daily_summary AS
+SELECT date, category, SUM(amount) as total
+FROM transactions
+GROUP BY date, category;
+```
+
+4. **Query Profiling:** Identify expensive operations
+- Use Snowsight Query Profile to analyze query performance
+- Look for: Full table scans, large data spilling, inefficient joins
+
+---
+
+### Multi-Environment Budget Strategy
+
+**Recommended Approach for Production:**
+
+```
+Account Budget: $10,000/month (organization total)
+├── Production Environment Budget: $6,000/month
+│   ├── API Warehouse: Resource Monitor at $2,000/month
+│   ├── Analytics Warehouse: Resource Monitor at $3,000/month
+│   └── ETL Warehouse: Resource Monitor at $1,000/month
+├── Development Environment Budget: $2,000/month
+│   ├── Dev Warehouse: Resource Monitor at $1,500/month
+│   └── Test Warehouse: Resource Monitor at $500/month
+└── Sandbox Environment Budget: $2,000/month
+    └── Individual user warehouses: $200/month each
+```
+
+**Benefits:**
+- Hierarchical visibility at multiple levels
+- Hard limits prevent runaway costs in lower environments
+- Chargeback/showback to business units
+- Clear accountability per team/project
+
+---
+
+## 🔗 Links to Snowflake Resources & Documentation
+
+### Official Snowflake Documentation
+
+#### Budgets:
+- [Monitoring Credit Usage with Budgets](https://docs.snowflake.com/en/user-guide/budgets)
+
+#### Cost Management:
+- [Cost Management Overview](https://docs.snowflake.com/en/user-guide/cost-management-overview)
+- [Exploring Cost Data](https://docs.snowflake.com/en/user-guide/cost-exploring)
+- [Understanding Compute Cost](https://docs.snowflake.com/en/user-guide/cost-understanding-compute)
+
+#### Resource Monitors:
+- [Resource Monitors Overview](https://docs.snowflake.com/en/user-guide/resource-monitors)
+- [Warehouse Credit Usage and Monitoring](https://docs.snowflake.com/en/user-guide/credits)
 
 ---
 
 ## 👤 Author & Support
 
-**Lab created by:** [Your Name] – [Your Job Title or Team]  
-**Created on:** [Month DD, YYYY] | **Last updated:** [Month DD, YYYY]
+**Lab created by:** Snowflake Solutions Engineering Team  
+**Created on:** November 2025 | **Last updated:** November 16, 2025
 
-💬 **Need Help or Have Feedback?**  
-- Slack Channel: [#your-slack-channel-name](https://your-slack-channel-link)  
-- Slack DM: [@YourSlackUsername](https://your-direct-slack-profile-link)  
-- Email: [your.email@example.com](mailto:your.email@example.com)
+**Version:** 1.0  
+**Snowflake Edition:** All editions supported  
+**Snowflake Version:** Compatible with all current versions
 
-🌟 *We greatly value your feedback to continuously improve our HOL experiences!*
+---
+
+## 🎉 Congratulations!
+
+By completing this lab, you've gained hands-on experience with:
+- ✅ Configuring account and custom budgets in Snowflake
+- ✅ Setting up role-based access to cost information
+- ✅ Implementing cost management best practices
+- ✅ Understanding Snowflake's usage-based pricing controls
+- ✅ Deploying production-ready cost governance
+
+**Next Steps:**
+- Apply these techniques in your own Snowflake account
+- Set up budgets for your teams or projects
+- Configure resource monitors for critical warehouses
+- Share cost management capabilities with your finance team
+- Explore advanced optimization techniques in Snowflake documentation
+
+**Continue Learning:**
+- Explore Snowflake's Account Usage views for deeper cost analysis
+- Learn about Time Travel and Fail-Safe storage costs
+- Investigate Snowpipe and task credit consumption
+- Study query optimization techniques for cost reduction
+
+---
+
+🌟 *Thank you for completing the Snowflake Cost Management Hands-On Lab! We hope this empowers you to help customers realize the value of Snowflake's usage-based pricing model with confidence and control.*
+
