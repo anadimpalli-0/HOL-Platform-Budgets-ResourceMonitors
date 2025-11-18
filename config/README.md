@@ -10,6 +10,16 @@ If all validations return ✅, you have successfully completed the Platform Perf
 **Important:** Replace `<YOUR_USERNAME>` in the validation script with your actual Snowflake username before running.
 
 ---
+## ⚠️ Important Notes
+
+### Before Running Validation:
+- **Replace `<YOUR_USERNAME>`** in the script with your actual Snowflake username
+  ```sql
+  SET username = '<YOUR_USERNAME>';  -- Change to your actual username (usually in Uppercase)
+  ```
+- Ensure you're using the **ACCOUNTADMIN** role when running validation
+- Complete all phases **before cleanup** (Phase 4 drops resources needed for validation)
+---
 
 ## ✅ Grading Steps
 
@@ -30,15 +40,8 @@ After completing ALL lab phases, run the comprehensive validation script:
 
 ---
 
-## ⚠️ Important Notes
-
-### Before Running Validation:
-- **Replace `<YOUR_USERNAME>`** in the script with your actual Snowflake username
-  ```sql
-  SET username = '<YOUR_USERNAME>';  -- Change to your actual username (usually in Uppercase)
-  ```
-- Ensure you're using the **ACCOUNTADMIN** role when running validation
-- Complete all phases **before cleanup** (Phase 4 drops resources needed for validation)
----
-
+# Next Steps
+## CleanUp
+Clean up all the Objects created during the lab
+[Script to Execute](/scripts/07_cleanup_budgets.sql)
 

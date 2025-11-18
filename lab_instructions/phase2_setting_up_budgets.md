@@ -14,7 +14,9 @@ The account-level budget monitors **all credit consumption** across your entire 
 
 ### 1.2 Set Up Account Budget via Snowsight
 1. Navigate to **Admin** → **Cost Management** → **Budgets**
-<img src="/images/accountbudget.png" width="70%">
+
+<img src="/images/AccountBudget.png" width="70%">
+
 2. Click on **Set Up Account Budget** button
    - **Note:** If the account budget is already set up, you'll see a **+** button and a **⋮** (three dots) menu instead
 
@@ -24,7 +26,7 @@ The account-level budget monitors **all credit consumption** across your entire 
 
 4. Click **Save** to activate the account budget
 
-<img src="/images/accountbudgetsetup.png" width="70%">
+<img src="/images/AccountBudgetSetup.png" width="70%">
 
 ### 1.3 View the Budget Trendline
 Once the account budget is set up, you'll see:

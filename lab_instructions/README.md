@@ -76,7 +76,8 @@ Execute the SQL scripts in the following order. Each script corresponds to a spe
    - **After running:** Review output to confirm resource assignments
 
 ---
-# Grading
+# Next Steps
+## Grading
 Complete grading before cleanup of the objects created in this Lab
 
 Detailed instructions on Grading can be found [HERE](/config/README.md)
