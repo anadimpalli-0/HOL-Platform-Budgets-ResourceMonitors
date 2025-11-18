@@ -169,7 +169,7 @@ SHOW PROCEDURES IN SCHEMA BUDGET_DB.BUDGET_SCHEMA;
 **If no budgets appear:** Go back to Step 3 and create them via Snowsight UI first.
 
 ### 5.2 Run the SQL Command
-Navigate to **scripts/06_view_budget_linked_resources.sql** and run:
+Navigate to [06_view_budget_linked_resources.sql](scripts/06_view_budget_linked_resources.sql) and run:
 
 ```sql
 -- View resources for each budget
