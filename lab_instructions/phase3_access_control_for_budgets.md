@@ -52,7 +52,7 @@ This is ideal for:
 - Auditors reviewing account-level costs
 
 ### 2.2 Create the Role
-1. Navigate to **scripts/04_create_account_budget_monitor_role.sql**
+1. Navigate to [04_create_account_budget_monitor_role.sql](scripts/04_create_account_budget_monitor_role.sql)
 2. **Important:** Replace `<username>` with your actual Snowflake username
 3. Review the script components:
 
@@ -260,20 +260,6 @@ REVOKE SNOWFLAKE.CORE.BUDGET ROLE BUDGET_DB.BUDGET_SCHEMA.CUSTOM_BUDGET_1!VIEWER
 -- Revoke account budget access
 REVOKE APPLICATION ROLE SNOWFLAKE.BUDGET_VIEWER FROM ROLE ACCOUNT_BUDGET_MONITOR;
 ```
-
----
-
-## Checkpoint ✓
-
-Before proceeding to Phase 4, verify:
-- [ ] ACCOUNT_BUDGET_MONITOR role is created
-- [ ] ACCOUNT_BUDGET_MONITOR role can view the account budget
-- [ ] ACCOUNT_BUDGET_MONITOR role cannot view custom budgets
-- [ ] CUSTOM_BUDGET_MONITOR role is created
-- [ ] CUSTOM_BUDGET_MONITOR role can view CUSTOM_BUDGET_1
-- [ ] CUSTOM_BUDGET_MONITOR role cannot view the account budget
-- [ ] You understand how to grant access to specific budgets
-- [ ] Both roles are granted to your user account
 
 ---
 
