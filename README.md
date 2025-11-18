@@ -53,7 +53,7 @@ This lab is designed to be completed in approximately 60-90 minutes:
 - [Prerequisites & Setup Details](#-prerequisites--setup-details)
 - [Lab Execution Guide](#-lab-execution-guide)
 - [Lab Validation & Grading](#-lab-validation--grading)
-- [Cleanup & Cost-Stewardship Procedures](#cleanup--cost-stewardship-procedures)
+- [Cleanup & Cost-Stewardship Procedures](#-cleanup--cost-stewardship-procedures)
 - [Advanced Concepts](#-advanced-concepts)
 - [Links to Snowflake Resources & Documentation](#-links-to-snowflake-resources--documentation)
 - [Author & Support](#-author--support)
@@ -172,9 +172,7 @@ Detailed instructions on Grading can be found [HERE](config/README.md)
 
 ---
 ## 🧹 Cleanup & Cost-Stewardship Procedures
-
-**07_cleanup_budgets.sql**
-   - **Purpose:** Clean up custom budgets created during the lab
+   **Purpose:** Clean up custom budgets created during the lab
    
    [Script to Execute](/scripts/07_cleanup_budgets.sql)
 
