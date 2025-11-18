@@ -20,15 +20,10 @@ In this phase, you'll set up the foundational components needed for cost managem
 
 If your email address is not set or verified:
 
-1. Navigate to **scripts/01_setup_email_notifications.sql**
+1. Navigate to [01_setup_email_notifications.sql](/scripts/01_setup_email_notifications.sql)
 2. Replace the following placeholders:
    - `<username>` with your actual Snowflake username
    - `<email@address>` with your actual email address
-3. Run the script in Snowsight
-
-```sql
-ALTER USER <username> SET EMAIL='<email@address>';
-```
 
 ### 1.3 Verify Email Address
 1. Check your email inbox for a verification email from Snowflake
@@ -52,7 +47,7 @@ Snowflake's Cost Management interface requires a dedicated warehouse to run quer
 - Resource usage reports
 
 ### 2.2 Create the Warehouse
-1. Navigate to **scripts/02_create_snowsight_warehouse.sql**
+1. Navigate to [02_create_snowsight_warehouse.sql](/scripts/02_create_snowsight_warehouse.sql)
 2. Review the warehouse configuration:
    - **Size:** X-Small (cost-efficient for monitoring queries)
    - **Auto-Suspend:** 60 seconds (minimizes idle costs)
