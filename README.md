@@ -53,8 +53,6 @@ This lab is designed to be completed in approximately 60-90 minutes:
 - [Prerequisites & Setup Details](#-prerequisites--setup-details)
 - [Lab Execution Guide](#-lab-execution-guide)
 - [Lab Validation & Grading](#-lab-validation--grading)
-- [Placeholder & Naming Conventions](#placeholder--naming-conventions)
-- [Troubleshooting & FAQ](#troubleshooting--faq)
 - [Cleanup & Cost-Stewardship Procedures](#cleanup--cost-stewardship-procedures)
 - [Advanced Concepts](#-advanced-concepts)
 - [Links to Snowflake Resources & Documentation](#-links-to-snowflake-resources--documentation)
