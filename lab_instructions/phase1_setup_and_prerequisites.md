@@ -36,6 +36,7 @@ If your email address is not set or verified:
 3. This ensures you'll receive alerts when budgets or resource monitors are triggered
 
 <img src="/images/notification.png" width="70%">
+
 ---
 
 ## Step 2: Create the Snowsight Warehouse
@@ -84,6 +85,7 @@ Take a moment to explore:
 - **Resource Monitors:** Where you'll set up resource monitors to track spending thresholds, preventing budget overruns before they happen.
 
 <img src="/images/notification.png" width="70%">
+
 ---
 
 ## Checkpoint ✓
