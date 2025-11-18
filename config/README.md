@@ -4,7 +4,7 @@ This is where you can find the validation script you need to run to prove you co
 
 Remember to edit your contact information in the SQL Statement for the [SE_GREETER.sql](SE_GREETER.sql)
 
-If all validations return ✅, you have successfully completed the Platform Performance Clustering HOL
+If all validations return ✅, you have successfully completed the HOL
 
 
 **Important:** Replace `<YOUR_USERNAME>` in the validation script with your actual Snowflake username before running.
@@ -42,6 +42,10 @@ After completing ALL lab phases, run the comprehensive validation script:
 
 # Next Steps
 ## CleanUp
+
 Clean up all the Objects created during the lab
-[Script to Execute](/scripts/07_cleanup_budgets.sql)
+
+Ensure that all the validations return ✅ before you cleanup the Objects.
+
+[Cleanup Script to Execute](/scripts/07_cleanup_budgets.sql)
 
