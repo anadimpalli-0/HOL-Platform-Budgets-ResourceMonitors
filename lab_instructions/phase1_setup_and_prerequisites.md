@@ -35,7 +35,7 @@ If your email address is not set or verified:
 2. Enable the option for **notifications for resource monitors**
 3. This ensures you'll receive alerts when budgets or resource monitors are triggered
 
-<img src="/images/notification.png" width="70%">
+<img src="/images/Notification.png" width="70%">
 
 ---
 
@@ -84,7 +84,7 @@ Take a moment to explore:
 - **Budgets:** Where you'll set up account and custom budgets
 - **Resource Monitors:** Where you'll set up resource monitors to track spending thresholds, preventing budget overruns before they happen.
 
-<img src="/images/notification.png" width="70%">
+<img src="/images/Costmgmt_UI.png" width="70%">
 
 ---
 
