@@ -140,7 +140,7 @@ This is ideal for:
 - Department-specific cost visibility
 
 ### 3.2 Create the Role
-1. Navigate to **scripts/05_create_custom_budget_monitor_role.sql**
+1. Navigate to [scripts/05_create_custom_budget_monitor_role.sql](/scripts/05_create_custom_budget_monitor_role.sql)
 2. **Important:** Replace `<username>` with your actual Snowflake username
 3. Review the script components:
 
@@ -303,5 +303,5 @@ SHOW GRANTS TO USER <username>;
 ---
 
 ## Next Steps
-Proceed to [Phase 4: Cleanup and Best Practices](phase4_cleanup_and_best_practices.md)
+Proceed to [Grading](/config/README.md)
 

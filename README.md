@@ -1,12 +1,7 @@
 # Snowflake Cost Management HOL: Implementing Budgets and Resource Monitors
 **Master cost control and gain visibility into Snowflake spending with hands-on budget management.**
 
-![Cost Management Architecture](image/cost_management_architecture.png)
-
----
-
-## 🎬 Lab Overview Video
-Watch this comprehensive overview to understand how Snowflake's cost management features help you control spending and optimize resource usage.
+![Cost Management Framework](images/cost_management_architecture.png)
 
 ---
 
@@ -22,11 +17,11 @@ Customers frequently express concerns about cloud costs. This lab addresses thos
 - **Task 2:** Enable the **account-level budget** to monitor total monthly spending and configure **custom budgets** for specific resources (warehouses and databases).
 - **Task 3:** Create **role-based access controls** to allow non-ACCOUNTADMIN users to view budget information without editing privileges.
 - **Task 4:** Implement **best practices** for budget management, warehouse optimization, and cost monitoring in production environments.
-- **Task 5 (Optional):** Configure **Resource Monitors** with hard spending limits and suspension triggers for automated cost control.
+- **Task 5:** Configure **Resource Monitors** with hard spending limits and suspension triggers for automated cost control.
 
 ### ⏲️ Estimated Lab Timeline
 
-This lab is designed to be completed in approximately 75-90 minutes:
+This lab is designed to be completed in approximately 60-90 minutes:
 
 - **Phase 1 (Setup & Prerequisites):** ~15-20 min
   - Configure email notifications
@@ -48,25 +43,22 @@ This lab is designed to be completed in approximately 75-90 minutes:
   - Review production deployment guidelines
   - Learn ongoing optimization strategies
 
-**Checkpoints (DORAs):** Each phase includes verification steps to ensure successful completion before proceeding.
-
-**Stop Points:** Natural breaks after Phase 2 and Phase 3 allow for discussion or Q&A sessions.
-
 ---
 
 ## 📖 Table of Contents
 
-- [Why this Matters](#why-this-matters)
-- [Suggested Discovery Questions](#suggested-discovery-questions)
-- [Repository Structure](#repository-structure)
-- [Prerequisites & Setup Details](#prerequisites--setup-details)
-- [Lab Execution Guide](#lab-execution-guide)
-- [Lab Validation & Grading](#lab-validation--grading)
+- [Why this Matters](#-why-this-matters)
+- [Suggested Discovery Questions](#-suggested-discovery-questions)
+- [Repository Structure](#-repository-structure)
+- [Prerequisites & Setup Details](#-prerequisites--setup-details)
+- [Lab Execution Guide](#-lab-execution-guide)
+- [Lab Validation & Grading](#-lab-validation--grading)
 - [Placeholder & Naming Conventions](#placeholder--naming-conventions)
 - [Troubleshooting & FAQ](#troubleshooting--faq)
 - [Cleanup & Cost-Stewardship Procedures](#cleanup--cost-stewardship-procedures)
-- [Advanced Concepts](#advanced-concepts)
-- [Links to Snowflake Resources & Documentation](#links-to-snowflake-resources--documentation)
+- [Advanced Concepts](#-advanced-concepts)
+- [Links to Snowflake Resources & Documentation](#-links-to-snowflake-resources--documentation)
+- [Author & Support](#-author--support)
 
 ---
 
@@ -118,11 +110,12 @@ Use these open-ended questions during customer conversations to understand their
 ```bash
 ├── README.md                          # Main entry point (this file)
 ├── LAB_INSTRUCTIONS.md 
+│   ├── README.md
 │   ├── phase1_setup_and_prerequisites.md
 │   ├── phase2_setting_up_budgets.md
 │   ├── phase3_access_control_for_budgets.md
 │   └── phase4_cleanup_and_best_practices.md
-├── image/                             # Diagrams and visual assets
+├── images/                             # Diagrams and visual assets
 ├── scripts/                           # SQL scripts for lab execution
 │   ├── 01_setup_email_notifications.sql
 │   ├── 02_create_snowsight_warehouse.sql
@@ -131,8 +124,8 @@ Use these open-ended questions during customer conversations to understand their
 │   ├── 05_create_custom_budget_monitor_role.sql
 │   ├── 06_view_budget_linked_resources.sql
 │   └── 07_cleanup_budgets.sql     
-├── Grading/                           # Validation scripts for lab completion
-│   ├── HOW_TO_GRADE.md                # Grading instructions
+├── Config/                           # Validation scripts for lab completion
+│   ├── README.md                # Grading instructions
 │   ├── DoraGrading_01_setup_prerequisites.sql
 │   ├── DoraGrading_02_budgets_setup.sql
 │   ├── DoraGrading_03_access_control.sql
@@ -170,180 +163,24 @@ Before starting the lab, ensure:
 
 ## 🚀 Lab Execution Guide
 
-### Script Execution Order
+Detailed instruction on executing the scripts can be found 
+[HERE](lab_instructions/README.md) 
 
-Execute the SQL scripts in the following order. Each script corresponds to a specific phase of the lab:
 
-#### **Phase 1: Setup and Prerequisites** (15-20 min)
-
-**📘 Detailed Instructions:** [Phase 1: Setup and Prerequisites](lab_instructions/phase1_setup_and_prerequisites.md)
-
-1. **01_setup_email_notifications.sql**
-   - **Purpose:** Configure email address for budget notifications
-   - **What it does:** Sets and verifies email for the ACCOUNTADMIN user
-   - **Important:** Replace `<username>` and `<email@address>` with actual values
-   - **After running:** Check email for verification link and click to verify
-
-2. **02_create_snowsight_warehouse.sql**
-   - **Purpose:** Create dedicated warehouse for Cost Management queries
-   - **What it does:** Creates `SNOWSIGHT_WH` with X-Small size and 60-second auto-suspend
-   - **After running:** Select this warehouse in the Cost Management interface
-
----
-
-#### **Phase 2: Setting Up Budgets** (20-25 min)
-**📘 Detailed Instructions:** [Phase 2: Setting Up Budgets](lab_instructions/phase2_setting_up_budgets.md)
-
-3. **03_create_budget_database.sql**
-   - **Purpose:** Create database for storing custom budget objects
-   - **What it does:** Creates `BUDGET_DB` database and `BUDGET_SCHEMA` schema
-   - **After running:** Refresh Snowsight if the database doesn't appear in dropdowns
-
-**Manual Step (Snowsight UI):**
-- **Enable Account Budget:** 
-  - Navigate to Admin → Cost Management → Budgets
-  - Click "Set Up Account Budget"
-  - Set spending limit and configure email notifications
-  - Save and verify budget trendline appears
-
-**Manual Step (Snowsight UI):**
-- **Create CUSTOM_BUDGET_1:**
-  - Click the "+" button in Budgets section
-  - Name: `CUSTOM_BUDGET_1`
-  - Database: `BUDGET_DB`, Schema: `BUDGET_SCHEMA`
-  - Add at least 2 warehouses
-  - Set budget amount and create
-
-**Manual Step (Snowsight UI):**
-- **Create CUSTOM_BUDGET_2:**
-  - Click the "+" button again
-  - Name: `CUSTOM_BUDGET_2`
-  - Database: `BUDGET_DB`, Schema: `BUDGET_SCHEMA`
-  - Add 1 warehouse (use one from CUSTOM_BUDGET_1 to see resource movement behavior)
-  - Set budget amount and create
-
----
-
-#### **Phase 3: Access Control for Budgets** (20-25 min)
-**📘 Detailed Instructions:** [Phase 3: Access Control for Budgets](lab_instructions/phase3_access_control_for_budgets.md)
-
-4. **04_create_account_budget_monitor_role.sql**
-   - **Purpose:** Create role for viewing account budget (read-only)
-   - **What it does:** Creates `ACCOUNT_BUDGET_MONITOR` role and grants budget viewer privileges
-   - **Important:** Replace `<username>` with your actual username (required for DORA grading)
-   - **After running:** Switch to this role in Snowsight and verify you can see account budget but not custom budgets
-
-5. **05_create_custom_budget_monitor_role.sql**
-   - **Purpose:** Create role for viewing specific custom budgets (read-only)
-   - **What it does:** Creates `CUSTOM_BUDGET_MONITOR` role and grants access to `CUSTOM_BUDGET_1`
-   - **Important:** Replace `<username>` with your actual username
-   - **After running:** Switch to this role and verify you can see CUSTOM_BUDGET_1 but not account budget
-
-6. **06_view_budget_linked_resources.sql**
-   - **Purpose:** Display resources assigned to each custom budget
-   - **What it does:** Calls stored procedures to list warehouses/databases in each budget
-   - **Use case:** Verify which resources belong to which budget, especially after moving resources between budgets
-   - **After running:** Review output to confirm resource assignments
-
----
-#### **Phase 4: Grading** (10-15 min)
-**📘 Detailed Instructions:** [Phase 4: Grading](Grading/HOW_TO_GRADE.md)
-
----
-#### **Phase 5: Cleanup and Best Practices** (10-15 min)
-**📘 Detailed Instructions:** [Phase 5: Cleanup and Best Practices](lab_instructions/phase5_cleanup_and_best_practices.md)
-
-7. **07_cleanup_budgets.sql**
-   - **Purpose:** Clean up custom budgets created during the lab
 ---
 
 ## ✅ Lab Validation & Grading
-
-### Validate Your Lab Completion
-
-After completing each phase or the entire lab, validate your work using the automated grading scripts in the `/Grading/` folder.
-
-**Important:** Run validations **BEFORE cleanup** (Phase 4) to ensure all components are present for validation.
-
-### Grading Scripts
-
-**Phase-Specific Validations:**
-
-1. **Phase 1 Validation:** Setup and Prerequisites
-```sql
-@Grading/DoraGrading_01_setup_prerequisites.sql
-```
-Validates: Email notifications, SNOWSIGHT_WH warehouse
-
-2. **Phase 2 Validation:** Budgets Setup
-```sql
-@Grading/DoraGrading_02_budgets_setup.sql
-```
-Validates: BUDGET_DB, custom budgets (CUSTOM_BUDGET_1, CUSTOM_BUDGET_2)
-
-3. **Phase 3 Validation:** Access Control
-```sql
-@Grading/DoraGrading_03_access_control.sql
-```
-Validates: Budget monitor roles, privileges, user grants
-
-**Complete Lab Validation:**
-
-4. **Comprehensive Validation** (all phases)
-```sql
-@Grading/DoraGrading_Complete.sql
-```
-Validates all components, provides completion certificate
-
-### Before Running Validations
-
-⚠️ **Replace `<YOUR_USERNAME>`** in each grading script with your actual Snowflake username before running.
-
-**Example:**
-```sql
--- Change this line in the script:
-SET username = '<YOUR_USERNAME>';
-
--- To this (with your actual username):
-SET username = 'JOHN_DOE';
-```
-
-### Understanding Validation Results
-
-- **✅ PASS:** Component is correctly configured
-- **⚠️ WARNING:** Component works but may not be optimal  
-- **❌ FAIL:** Component is missing or incorrectly configured
-
-### Success Criteria
-
-**Lab completion requires:**
-- All ✅ PASS validations across all phases
-- Manual verification of account budget in Snowsight UI
-- Manual testing of role-based access (ACCOUNT_BUDGET_MONITOR and CUSTOM_BUDGET_MONITOR)
-
-**Total Validation Checks:** 15 automated checks + 4 manual UI verifications
-
-### Completion Certificate
-
-Upon successful validation of all components, the `DoraGrading_Complete.sql` script generates a personalized completion certificate.
-
-**For detailed grading instructions, see:** [Grading/HOW_TO_GRADE.md](Grading/HOW_TO_GRADE.md)
-
-### All-in-One Guide
-
-**Need everything in one place?** Use the consolidated guide:
-
-📘 **[LAB_INSTRUCTIONS_WITH_GRADING.md](LAB_INSTRUCTIONS_WITH_GRADING.md)**
-
-This comprehensive document includes:
-- Complete lab instructions for all 4 phases
-- Inline validation checkpoints
-- Grading scripts reference
-- Success criteria and troubleshooting
-- All in a single, easy-to-follow document (732 lines)
+Detailed instructions on Grading can be found [HERE](config/README.md)
 
 ---
+## 🧹 Cleanup & Cost-Stewardship Procedures
 
+**07_cleanup_budgets.sql**
+   - **Purpose:** Clean up custom budgets created during the lab
+   
+   [Script to Execute](/scripts/07_cleanup_budgets.sql)
+
+---
 ## 📘 Advanced Concepts
 
 ### Resource Monitors vs. Budgets
@@ -449,12 +286,15 @@ Account Budget: $10,000/month (organization total)
 
 ## 👤 Author & Support
 
-**Lab created by:** Snowflake Solutions Engineering Team  
-**Created on:** November 2025 | **Last updated:** November 16, 2025
+**Lab created by:** Aparna Nadimpalli – SE Enablement Senior Manager  
+**Created on:** October 29, 2025 | **Last updated:** November 17, 2025 
 
-**Version:** 1.0  
-**Snowflake Edition:** All editions supported  
-**Snowflake Version:** Compatible with all current versions
+💬 **Need Help or Have Feedback?**  
+- Slack Channel: [#College-of-Platform](#)  
+- Slack DM: [@aparna.nadimpalli](https://snowflake.enterprise.slack.com/team/U03RQG03MJR)  
+- Email: [aparna.nadimpalli@snowflake.com](mailto:aparna.nadimpalli@snowflake.com)
+
+🌟 *We greatly value your feedback to continuously improve our HOL experiences!*
 
 ---
 

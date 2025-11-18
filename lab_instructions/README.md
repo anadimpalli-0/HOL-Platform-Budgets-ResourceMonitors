@@ -6,7 +6,7 @@ Execute the SQL scripts in the following order. Each script corresponds to a spe
 
 #### **Phase 1: Setup and Prerequisites** (15-20 min)
 
-**📘 Detailed Instructions:** [Phase 1: Setup and Prerequisites](lab_instructions/phase1_setup_and_prerequisites.md)
+**📘 Detailed Instructions:** [Phase 1: Setup and Prerequisites](phase1_setup_and_prerequisites.md)
 
 1. **01_setup_email_notifications.sql**
    - **Purpose:** Configure email address for budget notifications
@@ -22,7 +22,7 @@ Execute the SQL scripts in the following order. Each script corresponds to a spe
 ---
 
 #### **Phase 2: Setting Up Budgets** (20-25 min)
-**📘 Detailed Instructions:** [Phase 2: Setting Up Budgets](lab_instructions/phase2_setting_up_budgets.md)
+**📘 Detailed Instructions:** [Phase 2: Setting Up Budgets](phase2_setting_up_budgets.md)
 
 3. **03_create_budget_database.sql**
    - **Purpose:** Create database for storing custom budget objects
