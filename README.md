@@ -19,7 +19,7 @@ Customers frequently express concerns about cloud costs. This lab addresses thos
 - **Task 4:** Implement **best practices** for budget management, warehouse optimization, and cost monitoring in production environments.
 - **Task 5:** Configure **Resource Monitors** with hard spending limits and suspension triggers for automated cost control.
 
-Detailed instruction on executing the scripts can be found [HERE](lab_instructions/README.md)
+Detailed instructions on executing the scripts can be found [HERE](lab_instructions/README.md)
 
 ### ⏲️ Estimated Lab Timeline
 
